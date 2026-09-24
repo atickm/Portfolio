@@ -1,0 +1,2407 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Atick - Lead Generator, Web Designer, App Developer and AI enthusiast.">
+    <meta name="theme-color" content="#4070F4">
+
+    <title>Atick | Portfolio</title>
+
+    <!-- BOX ICONS -->
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet">
+
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================================
+           ROOT
+        ========================================================= */
+        :root {
+            --primary: #4070F4;
+            --primary-light: #6f91ff;
+            --bg: #ffffff;
+            --bg-secondary: #f7f9fc;
+            --text: #111111;
+            --text-secondary: #555555;
+            --text-muted: #777777;
+            --card: rgba(255, 255, 255, .58);
+            --border: rgba(20, 30, 60, .10);
+            --shadow: 0 20px 60px rgba(20, 30, 60, .10);
+
+            /* HEADER - MORE TRANSPARENT */
+            --header-bg: rgba(255, 255, 255, .36);
+
+            --radius: 20px;
+            --transition: .35s ease;
+        }
+
+        body.dark {
+            --bg: #080b12;
+            --bg-secondary: #0e131d;
+            --text: #f5f7fb;
+            --text-secondary: #b7bdc9;
+            --text-muted: #8d95a5;
+            --card: rgba(17, 23, 35, .58);
+            --border: rgba(255, 255, 255, .09);
+            --shadow: 0 20px 70px rgba(0, 0, 0, .35);
+
+            /* HEADER - MORE TRANSPARENT */
+            --header-bg: rgba(8, 11, 18, .38);
+        }
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        button,
+        input,
+        textarea {
+            font-family: inherit;
+        }
+
+        /* =========================================================
+           BACKGROUND PARTICLES
+        ========================================================= */
+        #particles-js {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+        .l-header {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(1180px, calc(100% - 30px));
+            z-index: 1000;
+
+            /* MORE TRANSPARENT GLASS */
+            background: var(--header-bg);
+
+            backdrop-filter: blur(22px) saturate(160%);
+            -webkit-backdrop-filter: blur(22px) saturate(160%);
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, .07);
+            transition: var(--transition);
+        }
+
+        .l-header.scrolled {
+            top: 8px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, .13);
+        }
+
+        .nav {
+            height: 68px;
+            padding: 0 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav__logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .logo-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(64, 112, 244, .8);
+        }
+
+        .nav__menu {
+            display: flex;
+        }
+
+        .nav__list {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav__link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 9px 14px;
+            font-size: .88rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .nav__link:hover,
+        .nav__link.active-link {
+            color: var(--primary);
+            background: rgba(64, 112, 244, .08);
+        }
+
+        .nav__link.active-link::after {
+            content: "";
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle,
+        .nav__toggle {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.25rem;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover,
+        .nav__toggle:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+            border-color: rgba(64, 112, 244, .3);
+        }
+
+        .nav__toggle {
+            display: none;
+        }
+
+        /* =========================================================
+           MAIN
+        ========================================================= */
+        main {
+            width: 100%;
+        }
+
+        .section {
+            width: min(1100px, calc(100% - 40px));
+            margin: auto;
+            padding: 110px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 55px;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+        #home {
+            min-height: 100vh;
+            width: min(1100px, calc(100% - 40px));
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .availability {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border: 1px solid rgba(64, 112, 244, .18);
+            background: rgba(64, 112, 244, .07);
+            border-radius: 50px;
+            font-size: .78rem;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 25px;
+            animation: floatBadge 3s ease-in-out infinite;
+        }
+
+        .availability-dot {
+            width: 7px;
+            height: 7px;
+            background: #28c76f;
+            border-radius: 50%;
+            box-shadow: 0 0 12px rgba(40, 199, 111, .7);
+        }
+
+        @keyframes floatBadge {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(2.6rem, 7vw, 5.2rem);
+            line-height: 1.08;
+            font-weight: 700;
+            letter-spacing: -2px;
+        }
+
+        .hero-title .blue {
+            color: var(--primary);
+        }
+
+        .typing-wrapper {
+            min-height: 55px;
+            margin-top: 14px;
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .typing-text {
+            color: var(--primary);
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background: var(--primary);
+            margin-left: 5px;
+            vertical-align: middle;
+            animation: blink .7s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .hero-description {
+            max-width: 650px;
+            margin: 18px auto 0;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: .96rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 22px;
+            border-radius: 12px;
+            font-size: .88rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(64, 112, 244, .25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(64, 112, 244, .35);
+        }
+
+        .btn-outline {
+            border-color: var(--border);
+            background: var(--card);
+            color: var(--text);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            transform: translateY(-4px);
+            border-color: rgba(64, 112, 244, .4);
+            color: var(--primary);
+        }
+
+        /* =========================================================
+           SOCIALS
+        ========================================================= */
+        .home__social {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .social-icon {
+            width: 43px;
+            height: 43px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            color: #fff;
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(64, 112, 244, .25);
+        }
+
+        /* =========================================================
+           STATS
+        ========================================================= */
+        .stats {
+            width: min(850px, calc(100% - 40px));
+            margin: -20px auto 50px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .stat-card {
+            padding: 22px;
+            text-align: center;
+            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: var(--radius);
+            backdrop-filter: blur(15px);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(64, 112, 244, .25);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            color: var(--primary);
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: .78rem;
+            margin-top: 4px;
+        }
+
+        /* =========================================================
+           ABOUT
+        ========================================================= */
+        .about__container {
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            gap: 55px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 380px;
+            margin: auto;
+            border-radius: 25px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .about-image img:hover {
+            transform: scale(1.02) rotate(-1deg);
+        }
+
+        .about-badge {
+            position: absolute;
+            bottom: 20px;
+            right: 10px;
+            padding: 12px 17px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            backdrop-filter: blur(15px);
+            box-shadow: var(--shadow);
+            font-size: .75rem;
+            font-weight: 600;
+        }
+
+        .about-badge i {
+            color: var(--primary);
+            margin-right: 5px;
+        }
+
+        .about__subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .about__subtitle span {
+            color: var(--primary);
+        }
+
+        .about__text {
+            color: var(--text-secondary);
+            line-height: 1.9;
+            font-size: .93rem;
+        }
+
+        .about-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 22px;
+        }
+
+        .pill {
+            padding: 8px 13px;
+            background: rgba(64, 112, 244, .07);
+            color: var(--primary);
+            border: 1px solid rgba(64, 112, 244, .12);
+            border-radius: 50px;
+            font-size: .72rem;
+            font-weight: 500;
+        }
+
+        /* =========================================================
+           SKILLS
+        ========================================================= */
+        .skills__container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 55px;
+            align-items: center;
+        }
+
+        .skills-intro {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: .9rem;
+            margin-bottom: 28px;
+        }
+
+        .skill {
+            margin-bottom: 22px;
+        }
+
+        .skill-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .skill-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text);
+            font-size: .85rem;
+            font-weight: 500;
+        }
+
+        .skill-name i {
+            color: var(--primary);
+            font-size: 1.15rem;
+        }
+
+        .skill-percent {
+            color: var(--primary);
+            font-size: .78rem;
+            font-weight: 600;
+        }
+
+        .skill-track {
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .skill-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border-radius: 20px;
+            transition: width 1.5s cubic-bezier(.2, .8, .2, 1);
+        }
+
+        .skills-image {
+            position: relative;
+        }
+
+        .skills-image img {
+            width: 100%;
+            height: 390px;
+            object-fit: cover;
+            border-radius: 25px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .skills-floating {
+            position: absolute;
+            left: -20px;
+            bottom: 25px;
+            padding: 16px 18px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            backdrop-filter: blur(15px);
+            box-shadow: var(--shadow);
+            font-size: .75rem;
+        }
+
+        .skills-floating strong {
+            display: block;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        /* =========================================================
+           WORK
+        ========================================================= */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: -25px;
+            margin-bottom: 35px;
+        }
+
+        .filter-btn {
+            padding: 9px 17px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: .75rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            height: 270px;
+            overflow: hidden;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, .08);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .portfolio-item.hide {
+            display: none;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-7px);
+            box-shadow: var(--shadow);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            background: linear-gradient(
+                to top,
+                rgba(5, 10, 20, .85),
+                transparent 65%
+            );
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .project-info {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .project-info h3 {
+            color: #fff;
+            font-size: .95rem;
+        }
+
+        .project-info span {
+            color: rgba(255, 255, 255, .7);
+            font-size: .68rem;
+        }
+
+        .zoom-icon {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50%;
+            font-size: 1.2rem;
+        }
+
+        /* =========================================================
+           CONTACT
+        ========================================================= */
+        .contact-card {
+            max-width: 850px;
+            margin: auto;
+            padding: 40px;
+
+            /* MORE TRANSPARENT GLASS */
+            background: rgba(255, 255, 255, .18);
+
+            border: 1px solid rgba(255, 255, 255, .22);
+            border-radius: 25px;
+            backdrop-filter: blur(22px) saturate(150%);
+            -webkit-backdrop-filter: blur(22px) saturate(150%);
+            box-shadow: var(--shadow);
+        }
+
+        body.dark .contact-card {
+            background: rgba(255, 255, 255, .07);
+            border-color: rgba(255, 255, 255, .12);
+        }
+
+        .contact-heading {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .contact-heading h3 {
+            font-size: 1.7rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-heading p {
+            color: var(--text-secondary);
+            font-size: .82rem;
+        }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .input-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .contact-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(64, 112, 244, .15);
+            background: rgba(255, 255, 255, .12);
+            color: var(--text);
+            border-radius: 12px;
+            outline: none;
+            font-size: .8rem;
+            transition: var(--transition);
+            backdrop-filter: blur(8px);
+        }
+
+        body.dark .contact-input {
+            background: rgba(255, 255, 255, .045);
+            border-color: rgba(255, 255, 255, .10);
+        }
+
+        .contact-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .contact-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(64, 112, 244, .08);
+            background: rgba(64, 112, 244, .04);
+        }
+
+        textarea.contact-input {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .contact-submit {
+            margin-top: 3px;
+            border: none;
+        }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+        footer {
+            margin-top: 40px;
+            padding: 55px 20px 30px;
+            text-align: center;
+
+            /* TRANSPARENT GLASS FOOTER */
+            background: rgba(255, 255, 255, .20);
+
+            border-top: 1px solid rgba(20, 30, 60, .10);
+
+            backdrop-filter: blur(22px) saturate(150%);
+            -webkit-backdrop-filter: blur(22px) saturate(150%);
+        }
+
+        body.dark footer {
+            background: rgba(8, 11, 18, .28);
+            border-top-color: rgba(255, 255, 255, .09);
+        }
+
+        .footer-logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .footer-logo span {
+            color: var(--primary);
+        }
+
+        .footer-text {
+            max-width: 500px;
+            margin: 12px auto 22px;
+            color: var(--text-muted);
+            font-size: .76rem;
+            line-height: 1.7;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            color: #fff;
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: .7rem;
+        }
+
+        /* =========================================================
+           MODAL
+        ========================================================= */
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            background: rgba(0, 0, 0, .88);
+            backdrop-filter: blur(8px);
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 15px;
+            box-shadow: 0 20px 70px rgba(0, 0, 0, .5);
+            animation: modalIn .3s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                transform: scale(.85);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, .1);
+            color: var(--primary-light);
+            transform: rotate(90deg);
+        }
+
+        /* =========================================================
+           BACK TO TOP
+        ========================================================= */
+        .back-top {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 13px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            box-shadow: 0 10px 30px rgba(64, 112, 244, .3);
+            transition: var(--transition);
+            z-index: 900;
+        }
+
+        .back-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-top:hover {
+            transform: translateY(-4px);
+        }
+
+        /* =========================================================
+           SCROLL REVEAL
+        ========================================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity .8s ease, transform .8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+        @media screen and (max-width: 900px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about__container,
+            .skills__container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                max-width: 500px;
+                margin: auto;
+            }
+
+            .skills-image {
+                max-width: 600px;
+                margin: auto;
+                width: 100%;
+            }
+
+            .skills-floating {
+                left: 10px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .l-header {
+                top: 8px;
+                width: calc(100% - 16px);
+            }
+
+            .nav {
+                height: 62px;
+            }
+
+            .nav__menu {
+                position: absolute;
+                top: calc(100% + 8px);
+                left: 0;
+                right: 0;
+                padding: 10px;
+
+                /* SAME GLASS HEADER TRANSPARENCY */
+                background: var(--header-bg);
+
+                backdrop-filter: blur(22px);
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: var(--transition);
+            }
+
+            .nav__menu.show {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .nav__list {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .nav__link {
+                justify-content: center;
+                padding: 12px;
+            }
+
+            .nav__toggle {
+                display: flex;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .section-title {
+                font-size: 1.9rem;
+                margin-bottom: 40px;
+            }
+
+            .hero-title {
+                letter-spacing: -1px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                max-width: 300px;
+            }
+
+            .contact-card {
+                padding: 25px 18px;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .section,
+            #home {
+                width: min(100% - 28px, 1100px);
+            }
+
+            .hero-title {
+                font-size: 2.45rem;
+            }
+
+            .typing-wrapper {
+                font-size: 1.2rem;
+            }
+
+            .hero-description {
+                font-size: .84rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-item {
+                height: 240px;
+            }
+
+            .portfolio-overlay {
+                opacity: 1;
+            }
+
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+
+            .input-group.full {
+                grid-column: auto;
+            }
+
+            .skills-image img {
+                height: 300px;
+            }
+
+            .close-btn {
+                top: 10px;
+                right: 12px;
+            }
+
+            .modal-content {
+                max-width: 94vw;
+            }
+        }
+
+        /* =========================================================
+           REDUCE MOTION
+        ========================================================= */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================================
+         PARTICLES
+    ========================================================== -->
+    <div id="particles-js"></div>
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+    <header class="l-header" id="header">
+        <nav class="nav">
+
+            <a href="#home" class="nav__logo">
+                ATICK
+                <span class="logo-dot"></span>
+            </a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+
+                    <li>
+                        <a href="#home" class="nav__link active-link">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#about" class="nav__link">
+                            About
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#skills" class="nav__link">
+                            Skills
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#work" class="nav__link">
+                            Work
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#contact" class="nav__link">
+                            Contact
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="nav-actions">
+
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="bx bx-moon"></i>
+                </button>
+
+                <button class="nav__toggle" id="nav-toggle" aria-label="Open menu">
+                    <i class="bx bx-menu"></i>
+                </button>
+
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+    <main>
+
+        <!-- HERO -->
+        <section id="home">
+
+            <div class="hero-content reveal">
+
+                <div class="availability">
+                    <span class="availability-dot"></span>
+                    Available for new projects
+                </div>
+
+                <h1 class="hero-title">
+                    Hi, I'm
+                    <span class="blue">Atick.</span>
+                </h1>
+
+                <div class="typing-wrapper">
+                    I am a
+                    <span class="typing-text"></span>
+                    <span class="typing-cursor"></span>
+                </div>
+
+                <p class="hero-description">
+                    I specialize in Lead Generation, Web Design,
+                    App Development and AI — turning ideas into
+                    useful digital experiences.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        Let's Talk
+                        <i class="bx bx-message-rounded-dots"></i>
+                    </a>
+                </div>
+
+                <div class="home__social">
+
+                    <a href="https://www.facebook.com/Meeatick555/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="social-icon"
+                       aria-label="Facebook">
+                        <i class="bx bxl-facebook"></i>
+                    </a>
+
+                    <a href="https://x.com/meeatickm"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="social-icon"
+                       aria-label="X">
+                        <i class="bx bxl-twitter"></i>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/atick555/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="social-icon"
+                       aria-label="LinkedIn">
+                        <i class="bx bxl-linkedin"></i>
+                    </a>
+
+                    <a href="https://github.com/atickm"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="social-icon"
+                       aria-label="GitHub">
+                        <i class="bx bxl-github"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- STATS -->
+        <div class="stats reveal">
+
+            <div class="stat-card">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Projects</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Happy Clients</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">4+</div>
+                <div class="stat-label">Core Skills</div>
+            </div>
+
+        </div>
+
+        <!-- ABOUT -->
+        <section class="section reveal" id="about">
+
+            <h2 class="section-title">
+                About <span>Me</span>
+            </h2>
+
+            <div class="about__container">
+
+                <div class="about-image">
+
+                    <img src="assets/img/about.jpg" alt="About Atick">
+
+                    <div class="about-badge">
+                        <i class="bx bx-code-alt"></i>
+                        Digital Creator
+                    </div>
+
+                </div>
+
+                <div>
+
+                    <h2 class="about__subtitle">
+                        I'm <span>Atick</span>
+                    </h2>
+
+                    <p class="about__text">
+                        Specializing in Lead Generation, Web Design,
+                        App Development, and AI. I enjoy turning ideas
+                        into functional digital experiences and helping
+                        businesses connect with the right people.
+                    </p>
+
+                    <div class="about-pills">
+
+                        <span class="pill">Lead Generation</span>
+                        <span class="pill">Web Design</span>
+                        <span class="pill">App Development</span>
+                        <span class="pill">AI</span>
+
+                    </div>
+
+                    <div style="margin-top:28px;">
+
+                        <a href="#contact" class="btn btn-primary">
+                            Work With Me
+                            <i class="bx bx-send"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- SKILLS -->
+        <section class="section reveal" id="skills">
+
+            <h2 class="section-title">
+                My <span>Skills</span>
+            </h2>
+
+            <div class="skills__container">
+
+                <div>
+
+                    <p class="skills-intro">
+                        Here are some of the areas I work with.
+                        The percentages represent my current
+                        confidence and experience level.
+                    </p>
+
+                    <div class="skill">
+
+                        <div class="skill-top">
+
+                            <div class="skill-name">
+                                <i class="bx bx-target-lock"></i>
+                                Lead Generation
+                            </div>
+
+                            <span class="skill-percent">95%</span>
+
+                        </div>
+
+                        <div class="skill-track">
+                            <div class="skill-bar" data-width="95%"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="skill">
+
+                        <div class="skill-top">
+
+                            <div class="skill-name">
+                                <i class="bx bxl-android"></i>
+                                App Development
+                            </div>
+
+                            <span class="skill-percent">85%</span>
+
+                        </div>
+
+                        <div class="skill-track">
+                            <div class="skill-bar" data-width="85%"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="skill">
+
+                        <div class="skill-top">
+
+                            <div class="skill-name">
+                                <i class="bx bx-desktop"></i>
+                                Website Design
+                            </div>
+
+                            <span class="skill-percent">65%</span>
+
+                        </div>
+
+                        <div class="skill-track">
+                            <div class="skill-bar" data-width="65%"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="skill">
+
+                        <div class="skill-top">
+
+                            <div class="skill-name">
+                                <i class="bx bx-bot"></i>
+                                AI
+                            </div>
+
+                            <span class="skill-percent">25%</span>
+
+                        </div>
+
+                        <div class="skill-track">
+                            <div class="skill-bar" data-width="25%"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="skills-image">
+
+                    <img src="assets/img/work3.jpg" alt="Atick Skills">
+
+                    <div class="skills-floating">
+                        <strong>Always Learning</strong>
+                        Building better digital experiences.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- WORK -->
+        <section class="section reveal" id="work">
+
+            <h2 class="section-title">
+                My <span>Work</span>
+            </h2>
+
+         
+
+            </div>
+
+            <div class="portfolio-grid">
+
+                <div class="portfolio-item"
+                     data-category="web"
+                     onclick="openModal('assets/img/work1.jpg')">
+
+                    <img src="assets/img/work1.jpg" alt="Web Project">
+
+                    <div class="portfolio-overlay">
+
+                        <div class="project-info">
+
+                            <div>
+                                <h3>Web Project</h3>
+                                <span>Website</span>
+                            </div>
+
+                            <div class="zoom-icon">
+                                <i class="bx bx-zoom-in"></i>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="portfolio-item"
+                     data-category="app"
+                     onclick="openModal('assets/img/work2.jpg')">
+
+                    <img src="assets/img/work2.jpg" alt="App Project">
+
+                    <div class="portfolio-overlay">
+
+                        <div class="project-info">
+
+                            <div>
+                                <h3>App Project</h3>
+                                <span>Application</span>
+                            </div>
+
+                            <div class="zoom-icon">
+                                <i class="bx bx-zoom-in"></i>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="portfolio-item"
+                     data-category="design"
+                     onclick="openModal('assets/img/work3.jpg')">
+
+                    <img src="assets/img/work3.jpg" alt="Design Project">
+
+                    <div class="portfolio-overlay">
+
+                        <div class="project-info">
+
+                            <div>
+                                <h3>Creative Design</h3>
+                                <span>UI / Design</span>
+                            </div>
+
+                            <div class="zoom-icon">
+                                <i class="bx bx-zoom-in"></i>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="portfolio-item"
+                     data-category="web"
+                     onclick="openModal('assets/img/work4.jpg')">
+
+                    <img src="assets/img/work4.jpg" alt="Web Project">
+
+                    <div class="portfolio-overlay">
+
+                        <div class="project-info">
+
+                            <div>
+                                <h3>Web Experience</h3>
+                                <span>Website</span>
+                            </div>
+
+                            <div class="zoom-icon">
+                                <i class="bx bx-zoom-in"></i>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="portfolio-item"
+                     data-category="app"
+                     onclick="openModal('assets/img/work5.jpg')">
+
+                    <img src="assets/img/work5.jpg" alt="Application Project">
+
+                    <div class="portfolio-overlay">
+
+                        <div class="project-info">
+
+                            <div>
+                                <h3>Mobile Project</h3>
+                                <span>Application</span>
+                            </div>
+
+                            <div class="zoom-icon">
+                                <i class="bx bx-zoom-in"></i>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="portfolio-item"
+                     data-category="design"
+                     onclick="openModal('assets/img/work6.jpg')">
+
+                    <img src="assets/img/work6.jpg" alt="Creative Project">
+
+                    <div class="portfolio-overlay">
+
+                        <div class="project-info">
+
+                            <div>
+                                <h3>Creative Project</h3>
+                                <span>Design</span>
+                            </div>
+
+                            <div class="zoom-icon">
+                                <i class="bx bx-zoom-in"></i>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            
+
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section reveal" id="contact">
+
+            <h2 class="section-title">
+                Let's <span>Talk</span>
+            </h2>
+
+            <div class="contact-card">
+
+                <div class="contact-heading">
+
+                    <h3>Have a project in mind?</h3>
+
+                    <p>
+                        Tell me about it and let's create something useful.
+                    </p>
+
+                </div>
+
+                <!-- EMAIL FORM -->
+                <form
+                    class="contact-form"
+                    action="https://formsubmit.co/atick400@gmail.com"
+                    method="POST">
+
+                    <input
+                        type="hidden"
+                        name="_subject"
+                        value="New Portfolio Contact - Atick">
+
+                    <input
+                        type="hidden"
+                        name="_template"
+                        value="table">
+
+                    <input
+                        type="hidden"
+                        name="_captcha"
+                        value="false">
+
+                    <input
+                        type="hidden"
+                        name="_next"
+                        value="https://atickm.github.io/Portfolio/#contact">
+
+                    <div class="input-group">
+
+                        <input
+                            type="text"
+                            name="name"
+                            class="contact-input"
+                            placeholder="Your Name"
+                            required>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <input
+                            type="email"
+                            name="email"
+                            class="contact-input"
+                            placeholder="Your Email"
+                            required>
+
+                    </div>
+
+                    <div class="input-group full">
+
+                        <textarea
+                            name="message"
+                            class="contact-input"
+                            placeholder="Tell me about your project..."
+                            required></textarea>
+
+                    </div>
+
+                    <div class="input-group full">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary contact-submit">
+
+                            Send Message
+                            <i class="bx bx-send"></i>
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- =========================================================
+         IMAGE MODAL
+    ========================================================== -->
+    <div class="modal" id="imageModal">
+
+        <span class="close-btn" onclick="closeModal()">
+            <i class="bx bx-x"></i>
+        </span>
+
+        <img
+            class="modal-content"
+            id="modalImage"
+            alt="Project Preview">
+
+    </div>
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+    <footer>
+
+        <div class="footer-logo">
+            ATICK<span>.</span>
+        </div>
+
+    
+
+        <div class="footer-social">
+
+            <a href="https://www.facebook.com/Meeatick555/"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Facebook">
+                <i class="bx bxl-facebook"></i>
+            </a>
+
+            <a href="https://x.com/meeatickm"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="X">
+                <i class="bx bxl-twitter"></i>
+            </a>
+
+            <a href="https://www.linkedin.com/in/atick555/"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="LinkedIn">
+                <i class="bx bxl-linkedin"></i>
+            </a>
+
+            <a href="https://github.com/atickm"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="GitHub">
+                <i class="bx bxl-github"></i>
+            </a>
+
+        </div>
+
+        <p class="copyright">
+            © 2026 Atick Portfolio. All rights reserved.
+        </p>
+
+    </footer>
+
+    <!-- =========================================================
+         BACK TO TOP
+    ========================================================== -->
+    <button class="back-top" id="back-top" aria-label="Back to top">
+        <i class="bx bx-up-arrow-alt"></i>
+    </button>
+
+    <!-- =========================================================
+         PARTICLES.JS
+    ========================================================== -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script>
+
+        /* =========================================================
+           BACKGROUND PARTICLES
+        ========================================================= */
+
+        particlesJS("particles-js", {
+
+            particles: {
+
+                number: {
+                    value: 55,
+                    density: {
+                        enable: true,
+                        value_area: 900
+                    }
+                },
+
+                color: {
+                    value: "#4070F4"
+                },
+
+                shape: {
+                    type: "circle"
+                },
+
+                opacity: {
+                    value: 0.72,
+                    random: true,
+
+                    anim: {
+                        enable: true,
+                        speed: 1.2,
+                        opacity_min: 0.25,
+                        sync: false
+                    }
+                },
+
+                size: {
+                    value: 4.2,
+                    random: true,
+
+                    anim: {
+                        enable: true,
+                        speed: 2,
+                        size_min: 1.5,
+                        sync: false
+                    }
+                },
+
+                line_linked: {
+                    enable: true,
+                    distance: 180,
+                    color: "#4070F4",
+                    opacity: 0.38,
+                    width: 1.3
+                },
+
+                move: {
+                    enable: true,
+                    speed: 0.85,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+
+                    attract: {
+                        enable: false
+                    }
+                }
+
+            },
+
+            interactivity: {
+
+                detect_on: "canvas",
+
+                events: {
+
+                    onhover: {
+                        enable: true,
+                        mode: "grab"
+                    },
+
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
+
+                    resize: true
+
+                },
+
+                modes: {
+
+                    grab: {
+                        distance: 220,
+
+                        line_linked: {
+                            opacity: 0.75
+                        }
+                    },
+
+                    push: {
+                        particles_nb: 4
+                    }
+
+                }
+
+            },
+
+            retina_detect: true
+
+        });
+
+
+        /* =========================================================
+           MOBILE MENU
+        ========================================================= */
+
+        const navToggle = document.getElementById("nav-toggle");
+        const navMenu = document.getElementById("nav-menu");
+
+        navToggle.addEventListener("click", () => {
+
+            navMenu.classList.toggle("show");
+
+            const icon = navToggle.querySelector("i");
+
+            if (navMenu.classList.contains("show")) {
+                icon.className = "bx bx-x";
+            } else {
+                icon.className = "bx bx-menu";
+            }
+
+        });
+
+
+        document.querySelectorAll(".nav__link").forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                navMenu.classList.remove("show");
+
+                navToggle.querySelector("i").className =
+                    "bx bx-menu";
+
+            });
+
+        });
+
+
+        /* =========================================================
+           HEADER + ACTIVE NAV
+        ========================================================= */
+
+        const header = document.getElementById("header");
+
+        const sections =
+            document.querySelectorAll("section[id]");
+
+        const navLinks =
+            document.querySelectorAll(".nav__link");
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 30) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+
+            let current = "";
+
+            sections.forEach(section => {
+
+                const sectionTop =
+                    section.offsetTop - 180;
+
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute("id");
+                }
+
+            });
+
+            navLinks.forEach(link => {
+
+                link.classList.remove("active-link");
+
+                if (
+                    link.getAttribute("href") ===
+                    "#" + current
+                ) {
+                    link.classList.add("active-link");
+                }
+
+            });
+
+        });
+
+
+        /* =========================================================
+           DARK / LIGHT MODE
+        ========================================================= */
+
+        const themeToggle =
+            document.getElementById("theme-toggle");
+
+        const savedTheme =
+            localStorage.getItem("atick-theme");
+
+        if (savedTheme === "dark") {
+
+            document.body.classList.add("dark");
+
+            themeToggle.querySelector("i").className =
+                "bx bx-sun";
+
+        }
+
+
+        themeToggle.addEventListener("click", () => {
+
+            document.body.classList.toggle("dark");
+
+            const dark =
+                document.body.classList.contains("dark");
+
+            themeToggle.querySelector("i").className =
+                dark ? "bx bx-sun" : "bx bx-moon";
+
+            localStorage.setItem(
+                "atick-theme",
+                dark ? "dark" : "light"
+            );
+
+        });
+
+
+        /* =========================================================
+           TYPING EFFECT
+        ========================================================= */
+
+        const typedText =
+            document.querySelector(".typing-text");
+
+        const words = [
+            "Lead Generator.",
+            "Web Designer.",
+            "App Developer.",
+            "AI Enthusiast."
+        ];
+
+        let wordIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
+
+
+        function typingEffect() {
+
+            const currentWord =
+                words[wordIndex];
+
+            if (!deleting) {
+
+                typedText.textContent =
+                    currentWord.substring(
+                        0,
+                        charIndex + 1
+                    );
+
+                charIndex++;
+
+                if (charIndex === currentWord.length) {
+
+                    deleting = true;
+
+                    setTimeout(
+                        typingEffect,
+                        1800
+                    );
+
+                    return;
+                }
+
+            } else {
+
+                typedText.textContent =
+                    currentWord.substring(
+                        0,
+                        charIndex - 1
+                    );
+
+                charIndex--;
+
+                if (charIndex === 0) {
+
+                    deleting = false;
+
+                    wordIndex =
+                        (wordIndex + 1) % words.length;
+
+                }
+
+            }
+
+            setTimeout(
+                typingEffect,
+                deleting ? 55 : 90
+            );
+
+        }
+
+        setTimeout(typingEffect, 700);
+
+
+        /* =========================================================
+           SKILL BARS
+        ========================================================= */
+
+        const skillBars =
+            document.querySelectorAll(".skill-bar");
+
+        const skillObserver =
+            new IntersectionObserver((entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        const bar = entry.target;
+
+                        bar.style.width =
+                            bar.dataset.width;
+
+                        skillObserver.unobserve(bar);
+
+                    }
+
+                });
+
+            }, {
+                threshold: .5
+            });
+
+
+        skillBars.forEach(bar => {
+            skillObserver.observe(bar);
+        });
+
+
+        /* =========================================================
+           PORTFOLIO FILTER
+        ========================================================= */
+
+        const filterButtons =
+            document.querySelectorAll(".filter-btn");
+
+        const portfolioItems =
+            document.querySelectorAll(".portfolio-item");
+
+
+        filterButtons.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                filterButtons.forEach(btn =>
+                    btn.classList.remove("active")
+                );
+
+                button.classList.add("active");
+
+                const filter =
+                    button.dataset.filter;
+
+                portfolioItems.forEach(item => {
+
+                    const category =
+                        item.dataset.category;
+
+                    if (
+                        filter === "all" ||
+                        category === filter
+                    ) {
+
+                        item.classList.remove("hide");
+
+                    } else {
+
+                        item.classList.add("hide");
+
+                    }
+
+                });
+
+            });
+
+        });
+
+
+        /* =========================================================
+           IMAGE MODAL
+        ========================================================= */
+
+        const modal =
+            document.getElementById("imageModal");
+
+        const modalImage =
+            document.getElementById("modalImage");
+
+
+        function openModal(imageSrc) {
+
+            modalImage.src = imageSrc;
+
+            modal.classList.add("show");
+
+            document.body.style.overflow = "hidden";
+
+        }
+
+
+        function closeModal() {
+
+            modal.classList.remove("show");
+
+            document.body.style.overflow = "";
+
+        }
+
+
+        modal.addEventListener("click", event => {
+
+            if (event.target === modal) {
+                closeModal();
+            }
+
+        });
+
+
+        document.addEventListener("keydown", event => {
+
+            if (event.key === "Escape") {
+                closeModal();
+            }
+
+        });
+
+
+        /* =========================================================
+           SCROLL REVEAL
+        ========================================================= */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+        const revealObserver =
+            new IntersectionObserver((entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("visible");
+
+                        revealObserver.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                });
+
+            }, {
+                threshold: .12
+            });
+
+
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+
+
+        /* =========================================================
+           BACK TO TOP
+        ========================================================= */
+
+        const backTop =
+            document.getElementById("back-top");
+
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 500) {
+
+                backTop.classList.add("show");
+
+            } else {
+
+                backTop.classList.remove("show");
+
+            }
+
+        });
+
+
+        backTop.addEventListener("click", () => {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
